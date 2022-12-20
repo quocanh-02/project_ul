@@ -1,0 +1,58 @@
+<div class="header__top">
+   
+        <div class="row">
+            <div class="col-lg-4 ">
+                <div class="header__top__left">
+                    <ul>
+                        <li><i class="fa fa-envelope"></i> oneshop@gmail.com</li>
+                        <li>Kết nối mọi người</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6">
+           
+                        <div class="hero__search__form">
+			
+				<form class="form-inline" th:action="@{/oneshop/search/}" >
+    <div class="input-group">
+     
+      <input type="text" class="form-control" name="keywords" placeholder="Nhập sản phẩm bạn muốn tìm kiếm ?" aria-label="Username" aria-describedby="basic-addon1" style="width: 500px;">
+       <div class="input-group-prepend " >
+        <span class="input-group-text bg-warning" id="basic-addon1" style="width: 50px;"> <i class="fa fa-search"></i></span>
+      </div>
+    </div>
+  </form>
+<br>
+		</div>
+		
+	
+		
+                <div  class="header__top__right__auth" th:if="${session.currentUser != null}"><a style="margin-left: 300px; color: rgb(53, 52, 52);" type="button" th:href="@{/oneshop/user}"><div class="position-relative">
+                        <img class="rounded-circle" th:src="@{|/static/avatar/${session.currentUser.imgUrl}|}" alt="" style="width: 40px; height: 40px;">
+                       
+                    </div> <span
+						th:text="${session.currentUser.username}"
+						></span></a></div>
+
+                  
+                    <div class="header__top__right__auth" th:if="${session.currentUser == null}">
+
+                                <a  type="button" th:href="@{/oneshop/login}" > <i class="fa fa-user-circle"></i>
+                                  Đăng nhập
+                                  </a>
+                    </div>
+ <div  class="header__top__right__auth" th:if="${session.currentUser == null}">
+
+                                <a style="margin-left: 30px; color: rgb(53, 52, 52);" type="button" th:href="@{/oneshop/register}"  >
+                            <i class="fa fa-registered"></i>
+                           Đăng ký
+                                  </a>
+                            </div>
+                 
+
+                </div>
+                
+            
+            </div>
+        </div>
+

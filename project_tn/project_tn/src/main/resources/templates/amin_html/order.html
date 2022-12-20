@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout_admin/index :: dynamic(~{::main})}">
+<body>
+	<main>
+	 
+		</div>
+		<h5 class="mb-4 text-center text-primary">THÔNG TIN ĐƠN HÀNG</h5>
+		<div class="col-sm-12">
+			<div class="card card-body ">
+				<br>
+				<h4>DANH SÁCH ĐƠN HÀNG</h4>
+				      <div class="hero__search__form" >
+			
+				<form class="form-inline" th:action="@{/admin/oneshop/order/searchorder}" style="margin-left: 600px;" >
+    <div class="input-group">
+     
+      <input type="text" class="form-control" name="keywords" placeholder="Nhập mã đơn hàng bạn muốn tìm ?" aria-label="Username" aria-describedby="basic-addon1" style="width: 500px;">
+       <div class="input-group-prepend " >
+        <span class="input-group-text bg-warning" id="basic-addon1" style="width: 50px;"> <i class="fa fa-search"></i></span>
+      </div>
+    </div>
+  </form>
+<br>
+
+				<hr>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="home" role="tabpanel"
+						aria-labelledby="home-tab">
+
+						<table class="table">
+							<thead class="bg-dark text-white">
+								<tr>
+									<th scope="col">Mã </th>
+									<th scope="col">Họ và tên</th>
+									<th scope="col">SĐT</th>
+									<th scope="col">Địa chỉ</th>
+									<th scope="col">Ngày đặt</th>
+									<th scope="col">Tình trạng </th>
+									<th scope="col"> </th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="order,index :${orders}">
+									<td th:text="${order.id}"></td>
+									<td th:text="${order.user.fullname}"></td>
+									<td th:text="${order.phone}"></td>
+									<td th:text="${order.address}"></td>
+									<td th:text="${#dates.format(order.createdDate,'dd/MM/yyyy')}"></td>
+									
+									<td><div th:if="${order.status==0}">
+													<a style=" color: white;" class="btn btn-primary"
+														th:data-id="${order.id}"
+														onclick="showConfigConfirmModalDialog(this.getAttribute('data-id'))">XÁC NHẬN GIAO ĐƠN HÀNG</a> 
+														 <a												
+														style=" color: white;"  class="btn btn-danger" th:data-id="${order.id}"
+														onclick="showConfigCancelModalDialog(this.getAttribute('data-id'))">HỦY ĐƠN HÀNG</a>
+														
+														
+												</div>
+												<div th:if="${order.status==1}">
+													<a style=" color: white;" class="btn btn-success"
+														th:data-id="${order.id}"
+														onclick="showConfigDeliveredModalDialog(this.getAttribute('data-id'))">XÁC NHẬN KHÁCH HÀNG ĐÃ NHẬN </a>
+														<a												
+														style=" color: white;"  class="btn btn-danger" th:data-id="${order.id}"
+														onclick="showConfigCancelModalDialog(this.getAttribute('data-id'))">HỦY ĐƠN HÀNG</a>
+												</div>
+												<div th:if="${order.status==2}" class="text-warning">
+													GIAO HÀNG THÀNH CÔNG
+												</div>
+												<div th:if="${order.status==3}" style="color: red;">
+													ĐƠN HÀNG ĐÃ HỦY
+												</div></td>
+												<td><a class="btn btn-success"
+												th:href="@{|/admin/oneshop/order/detail/${order.id}|}"> <i class="bi bi-eye-fill" aria-hidden="true"></i></a></td>
+								</tr>
+
+							</tbody>
+						</table>
+								<!-- Modal -->
+								<div class="modal" id="configmationConfirmId">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title">Xác nhận giao đơn hàng </h5>
+												
+											
+											</div>
+											<div class="modal-body">
+												<p>
+													Bạn có muốn xác nhận tiến hành giao đơn hàng mã <span id="id"></span> không
+													?
+												</p>
+											</div>
+											<div class="modal-footer">
+												<a id="yesOptionConfirm" type="button"
+													class="btn btn-info">ĐỒNG Ý XÁC NHẬN</a>
+											
+											</div>
+										</div>
+									</div>
+								</div>
+								
+									<div class="modal" id="configmationDeliveredId">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title">Xác nhận khách hàng đã nhận đơn</h5>
+												
+											</div>
+											<div class="modal-body">
+												<p>
+													Bạn có muốn xác nhận đơn hàng mã <span id="idDelivered"></span> đã giao thành công không
+													?
+												</p>
+											</div>
+											<div class="modal-footer">
+												<a id="yesOptionDelivered" type="button"
+													class="btn btn-info">ĐỒNG Ý XÁC NHẬN</a>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="modal" id="configmationCancelId">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title">Xác nhận hủy đơn hàng</h5>
+											
+											</div>
+											<div class="modal-body">
+												<p>
+													Bạn có muốn huỷ đơn hàng có mã <span id="idCancel"></span> không
+													?
+												</p>
+											</div>
+											<div class="modal-footer">
+												<a id="yesOptionCanCel" type="button" 	class="btn btn-info">ĐỒNG Ý HỦY ĐƠN HÀNG</a>
+											
+											</div>
+										</div>
+									</div>
+								</div>
+							
+					</div>
+
+<nav aria-label="Page navigation example text">
+			<ul class="pagination">
+
+
+
+
+				<th:block th:each="pagenumber:${pageNumbers}">
+					<li class="page-item"
+						th:classappend="${pagenumber==orders.number+1} ? active"><a
+						class="page-link" th:href="@{|/admin/oneshop/order?a=${pagenumber-1}|}">[[${pagenumber}]]</a></li>
+				</th:block>
+
+			</ul>
+		</nav>
+
+				</div>
+
+
+			</div>
+		</div>
+		
+		
+	</main>
+</body>
+
+</html>

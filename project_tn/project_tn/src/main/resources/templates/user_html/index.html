@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+	<main>
+	
+		<div class="section-title">
+
+			<h2 class="text-danger">Sản phẩm mới</h2>
+		</div>
+
+		<div class="row" style="margin-top: 10px;">
+			<div th:each="p:${item}" class="col-lg-4 col-md-6 col-sm-6">
+				<div class="product__item">
+					<div class="product__item__pic set-bg">
+						<a th:href="@{|/oneshop/detail/${p.slug}|}"> <img
+							th:src="@{|/static/avatar/${p.imgUrl}|}"
+							style="width: 300px; height: 250px;">
+						</a>
+						<ul class="product__item__pic__hover">
+
+							<li><a th:attr="onclick='addToCart(\''+${p.id}+ '\')'"><i class="fa fa-shopping-cart"
+									></i></a></li>
+
+						</ul>
+					</div>
+					<div class="product__item__text">
+					  <img class="new-icon " src="/user/img/product/new.jpg " />
+						<p class="font-weight-bold text-primary" th:text="${p.name}"></p>
+						<h5 th:text="${#numbers.formatCurrency(p.price)}"></h5>
+					</div>
+				</div>
+
+			</div>
+
+
+
+
+
+		</div>
+
+<div class="section-title">
+                   
+                        <h2 class="text-danger">Khuyến mại sản phẩm</h2>
+                    </div>
+                    	<div class="row" style="margin-top: 10px;">
+			<div th:each="p:${items}" class="col-lg-4 col-md-6 col-sm-6">
+				<div class="product__item">
+					<div class="product__item__pic set-bg">
+						<a th:href="@{|/oneshop/detail/${p.slug}|}"> <img
+							th:src="@{|/static/avatar/${p.imgUrl}|}"
+							style="width: 300px; height: 250px;">
+						</a>
+						<ul class="product__item__pic__hover">
+							
+							<li><a  th:attr="onclick='addToCart(\''+${p.id}+ '\')'"><i class="fa fa-shopping-cart"></i></a></li>
+					
+						</ul>
+					</div>
+					<div class="product__item__text">
+						<p class="font-weight-bold text-primary" th:text="${p.name}"></p>
+						<span class="new-icon btn btn-warning" style="width: 50px;">[[${p.discount}]]%</span>
+						<span class="font-weight-bold " style="color: red;">[[${#numbers.formatCurrency(p.price * (100- p.discount) /100)}]]</span>
+						<del class="font-weight-bold"><span th:text="${#numbers.formatCurrency(p.price)}" style="margin-left: 80px;color: gray;"></span></del>
+					</div>
+				</div>
+
+			</div>
+
+
+	</main>
+
+</body>
+
+</html>

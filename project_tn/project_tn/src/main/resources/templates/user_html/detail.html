@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main th:object="${items}">
+
+		<h2 class="text-muted text-center">Điện thoại [[*{name}]]</h2>
+		<hr>
+		<div class="row" style="margin-top: 10px;">
+
+			<div class="col-lg-6 col-md-6">
+
+
+
+				<div class="images-container">
+					<div class="container-enlarge">
+						<img th:src="@{|/static/avatar/*{imgUrl}|}"> <span><img
+							th:src="@{|/static/avatar/*{imgUrl}|}"></span>
+					</div>
+				
+
+				
+				</div>
+				
+				</div>
+
+
+
+			<div class="col-lg-6 col-md-6">
+				<div class="product__details__text ">
+					<br>
+
+					<h5>Hãng sản phẩm : [[*{category.description}]]</h5>
+
+
+					<h5>Mô tả sản phẩm :</h5>
+					<p th:text="*{description}"></p>
+
+					<h5 style="color: red;">Giá :
+						[[*{#numbers.formatCurrency(price)}]]</h5>
+
+<br>
+<br>
+<br>
+<p class="btn btn-danger text-white" th:attr="onclick='addToCart(\''+*{id}+ '\')'">
+<a  th:href="@{/oneshop/cart}" ><i class="bi bi-bag"></i>MUA NGAY</a></p>
+
+			<p class="btn btn-primary" th:attr="onclick='addToCart(\''+*{id}+ '\')'">
+<i
+						class="fa fa-shopping-bag"></i> THÊM VÀO GIỎ HÀNG</p>
+					
+
+				</div>
+			</div>
+			</div>
+				<p>
+				<a style="margin-left: 150px;" class="btn btn-secondary" data-toggle="collapse"
+					href="#multiCollapseExample1" role="button" aria-expanded="false"
+					aria-controls="multiCollapseExample1">Thông tin chi tiết về sản
+					phẩm</a>
+
+			</p>
+		
+					<div class="collapse multi-collapse" id="multiCollapseExample1">
+						<div class="card card-body " >
+					<br>
+						<h5 class="text-center">Thông số kỹ thuật điện thoại [[*{name}]]</h5>
+							<br>
+						<ul class="list-group">
+  <li class="list-group-item active">Màn hình</li>
+  <li class="list-group-item">Công nghệ màn hình : [[*{screenTechnology}]]</li>
+  <li class="list-group-item">Độ phân giải : [[*{resolution}]]</li>
+  <li class="list-group-item">Màn hình rộng:  [[*{widescreen}]]</li>
+  <li class="list-group-item">Độ sáng tối đa: [[*{maximumBrightness}]]</li>
+    <li class="list-group-item">Mặt kính cảm ứng: [[*{touchGlass}]]</li>
+					<li class="list-group-item active">Camara sau</li>
+					<li class="list-group-item">Độ phân giải :
+						[[*{rearCameraResolution}]]</li>
+					<li class="list-group-item">Quay phim : [[*{film}]]</li>
+					<li class="list-group-item">Đèn Flash: [[*{flashLight}]]</li>
+					<li class="list-group-item">Tính năng: [[*{feature}]]</li>
+					<li class="list-group-item active">Camara trước</li>
+    <li class="list-group-item">Độ phân giải: [[*{touchGlass}]]</li>
+        <li class="list-group-item active">Hệ điều hành & CPU</li>
+  <li class="list-group-item">Hệ điều hành: [[*{operatingSystem}]]</li>
+  <li class="list-group-item">Chip xử lý (CPU): [[*{processorChip}]]</li>
+  <li class="list-group-item">Tốc độ CPU:  [[*{cpuSpeed}]]</li>
+   <li class="list-group-item">Chip đồ họa (GPU): [[*{graphicsChip}]]</li>
+   
+   
+       <li class="list-group-item active">Bộ nhớ & Lưu trữ</li>
+  <li class="list-group-item">RAM: [[*{ram}]]</li>
+  <li class="list-group-item">Dung lượng lưu trữ: [[*{storageCapacity}]]</li>
+  <li class="list-group-item">Dung lượng còn lại (khả dụng) khoảng:  [[*{remainingCapacity}]]</li>
+   <li class="list-group-item">Thẻ nhớ:[[*{memoryStick}]]</li>
+      <li class="list-group-item">Danh bạ:[[*{phonebook}]]</li>
+      
+             <li class="list-group-item active">Kết nối</li>
+  <li class="list-group-item">Mạng di động: [[*{mobileNetwork}]]</li>
+  <li class="list-group-item">SIM: [[*{sim}]]</li>
+  <li class="list-group-item">Wifi:  [[*{wifi}]]</li>
+   <li class="list-group-item">GPS:[[*{gps}]]</li>
+      <li class="list-group-item">Bluetooth:[[*{bluetooth}]]</li>
+        <li class="list-group-item">Cổng kết nối/sạc: [[*{connectorChargingPort}]]</li>
+  <li class="list-group-item">Jack tai nghe: [[*{headphoneJack}]]</li>
+  <li class="list-group-item">Kết nối khác: [[*{otherConnections}]]</li>
+  
+    <li class="list-group-item active">Pin & Sạc</li>
+  <li class="list-group-item">Dung lượng pin: [[*{mobileNetwork}]]</li>
+      <li class="list-group-item active">Tiện ích</li>
+  <li class="list-group-item">Bảo mật nâng cao: [[*{advancedSecurity}]]</li>
+         <li class="list-group-item active">Thông tin chung</li>
+  <li class="list-group-item">Thiết kế: [[*{design}]]</li>
+  <li class="list-group-item">Chất liệu: [[*{materialSubstance}]]</li>
+  <li class="list-group-item">Kích thước, khối lượng:  [[*{dimensionsWeight}]]</li>
+   <li class="list-group-item">Bảo hành:[[*{insurance}]]</li>
+
+
+  
+</ul>
+					
+						</div>
+					</div>
+				
+			
+		
+			
+				<div class="row bg-light p-70" 
+					style="margin-left: 50px; margin-top: 100px;" th:each="comment:${items.feedback}">
+
+					<div class="col-md-6 my-date">
+						<h4 class="mb-4">Đánh giá cho sản phẩm</h4>
+						<div class="media mb-4">
+							<img  th:src="@{|/static/avatar/${comment.username.imgUrl}|}" alt="Image"
+								class="img-fluid mr-3 mt-1" style="width: 45px;">
+							<div class="media-body">
+								<h6 th:text="${comment.username.username}"> 
+								</h6>
+							<small  th:text="${#dates.format(comment.createdDate,'dd/MM/yyyy')}"> </small>
+							
+								<p  th:text="${comment.content}"></p>
+							</div>
+						</div>
+					</div>
+				
+					<div class="col-md-6">
+						<h4 class="mb-4">Để lại bình luận</h4>
+
+						<form>
+							<div class="form-group">
+								<label for="message">Bình luận *</label>
+								<textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="name">Họ và tên *</label> <input type="text"
+									class="form-control" id="name">
+							</div>
+							<div class="form-group">
+								<label for="email">SĐT</label> <input type="number"
+									class="form-control" id="email">
+							</div>
+							<div class="form-group mb-0">
+								<input type="submit" value="Gửi" class="btn btn-primary px-3">
+							</div>
+						</form>
+					</div>
+				</div>
+			
+
+
+			<br> <br> <br>
+			<hr>
+			<br>
+			<!-- Product Details Section End -->
+
+			<!-- Related Product Section Begin -->
+			<section class="related-product">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title related__product__title">
+							<h2>SẢN PHẨM CÙNG LOẠI</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+
+					<div th:each="p:*{category.products}"
+						class="col-lg-4 col-md-6 col-sm-6">
+						<div class="product__item">
+							<div class="product__item__pic set-bg">
+								<a th:href="@{|/oneshop/detail/${p.slug}|}"> <img
+									th:src="@{|/static/avatar/${p.imgUrl}|}"
+									style="width: 300px; height: 200px;"></a>
+								<ul class="product__item__pic__hover">
+									<li><a href="#"><i class="fa fa-heart"></i></a></li>
+									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+								</ul>
+							</div>
+							<div class="product__item__text">
+								<br> <a class="font-weight-bold" th:text="${p.name}"></a>
+
+								<h5 th:text="${#numbers.formatCurrency(p.price)}"></h5>
+							</div>
+						</div>
+					</div>
+
+
+</div>
+</section>
+		
+
+
+
+
+			
+	</main>
+</body>
+</html>
+

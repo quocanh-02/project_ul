@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout_admin/index :: dynamic(~{::main})}">
+<body>
+	<main>
+	<h4 class="mb-4 text-center text-primary"><i class="bi bi-bar-chart-line"></i> THỐNG KÊ SẢN PHẨM</h4>
+	<br>
+	<div class="card card-body " >
+	
+	 <div class="secondRowContent row">
+		<div class="col-6 mt-2">
+		  <div class="card card-body " >
+	         <div class="card border-0 mb-2">
+	             <div class="card-header bg-white2 border-0">
+	               
+	                 <h6 class="d-block font-weight-bold text-info">Doanh thu sản phẩm theo tuần (7 ngày)</h6>
+	             </div>
+	           
+	             <div class="card-body">
+	                 <canvas id="myLineChartRevenue"></canvas>
+	             </div>
+	             </div>
+	         </div>
+	     </div>
+	     <div class="col-6 mt-2">
+	     	  <div class="card card-body " >
+	         <div class="card border-0 mb-2">
+	             <div class="card-header bg-white2 border-0">
+	                 
+	                 <h6 class="d-block font-weight-bold text-info">Số lượng sản phẩm bán được theo hãng sản phẩm(tháng)</h6>
+	             </div>
+	             <div class="card-body">
+	                 <canvas id="myBarChartSoldByType"></canvas>
+	             </div>
+	         </div>
+	     </div>
+	     </div>
+	</div>
+	<br>
+	<div class="secondRowContent">
+                	  <div class="card card-body " >
+                	   <div class="card-header bg-white2 border-0">
+	                 
+	                  <h6 class="d-block font-weight-bold text-info">Doanh thu sản phẩm theo tháng</h6>
+	             </div>
+	             <br>
+                  
+                        <div class="bg-light text-center rounded p-4">
+                         
+                            
+                            <canvas id="canvasChart"></canvas>
+                            
+                        </div>
+                    </div>
+                </div>
+           
+           </div>
+	
+
+	
+	
+	
+	
+	</main>
+
+</body>
+</html>

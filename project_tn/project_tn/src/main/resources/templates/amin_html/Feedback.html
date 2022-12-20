@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout_admin/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		  <div class="col-sm-12">
+                        <div class="bg-light h-100 p-4">
+                            <h5 class="text-center text-success"><i class="bi bi-book"></i> ĐÁNH GIÁ SẢN PHẨM</h5>
+                            <table class="table">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th scope="col ">Họ và tên</th>
+                                        <th scope="col ">SĐT</th>
+                                        <th scope="col ">Sản phẩm</th>
+                                        <th scope="col ">Nhận xét</th>
+                                        <th scope="col "></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row ">Nguyễn Văn A</th>
+                                        <td>0357462589</td>
+                                        <td>OPPO A54</td>
+                                        <td>Đẹp</td>
+                                        <td><button type="submit" class="btn btn-success w-50 h-50">Hiện</button></td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout_admin/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<h5 class="mb-4 text-center text-primary">
+			<i class="bi bi-journal"></i> THÔNG TIN SẢN PHẨM
+		</h5>
+		<div class="col-sm-12">
+
+			<ul class="nav nav-tabs text-uppercase font-weight-bold bg-light"
+				id="myTab" role="tablist">
+				<li class="nav-item"><a class="nav-link active bg-light"
+					id="home-tab" href="#home" data-toggle="tab" role="tab"
+					aria-controls="home" aria-selected="true"><i
+						class="fas fa-save"></i> Cập nhật</a></li>
+				<li class="nav-item"><a class="nav-link" id="profile-tab"
+					href="#profile" data-toggle="tab" role="tab"
+					aria-controls="profile" aria-selected="false"><i
+						class="fas fa-list"></i> Danh sách</a></li>
+
+			</ul>
+				<div class="card">
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="home" role="tabpanel"
+					aria-labelledby="home-tab">
+
+					<div class="bg-light h-100 p-4">
+
+						<form name="products">
+							<div class="row">
+								<div class="col-sm-6">
+
+
+									<div class="border p-3 mt-5 text-center">
+										<label for="image" > <img
+											ng-src="/static/avatar/{{form2.imgUrl}}" style="width: 300px"
+											height="300px" />
+										</label> <input type="file" class="form-control" id="image"
+											onchange="angular.element(this).scope().imageChanged2(this.files)">
+
+									</div>
+									<br>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Độ phân giải camera sau</label> 
+										<input type="text" id="rearCameraResolution" name="rearCameraResolution" ng-model="form2.rearCameraResolution"
+											class="form-control"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.rearCameraResolution.$invalid" style="color: red;">Vui lòng nhập
+											độ phân giải (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Quay phim</label> 
+										<input type="text" ng-model="form2.film" name="film"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255"> 
+											<span
+											ng-show="products.film.$invalid" style="color: red;">Vui lòng nhập
+											quay phim (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Đèn Flash</label> 
+										<input type="text" ng-model="form2.flashLight" name="flashLight"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.flashLight.$invalid" style="color: red;">Vui lòng đèn flash (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Tính năng</label> 
+										<input type="text" ng-model="form2.feature"
+											class="form-control" id="exampleInputName" name="feature"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.feature.$invalid"style="color: red;">Vui lòng nhập
+											tính năng (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Độ phân giải camera trước</label>
+										 <input type="text" ng-model="form2.frontCameraResolution" name="frontCameraResolution"
+											class="form-control" id="exampleInputName" minlength="2" maxlength="255">
+											<span
+											ng-show="products.frontCameraResolution.$invalid" style="color: red;">Vui lòng nhập
+											độ phân giải camera trước (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Hệ điều hành</label> 
+										<input type="text" ng-model="form2.operatingSystem" name="operatingSystem"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.operatingSystem.$invalid" style="color: red;">Vui lòng nhập
+											hệ điều hành (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Chíp xử lý CPU</label> 
+										<input type="text" ng-model="form2.processorChip" name="processorChip"  minlength="2" maxlength="255"
+											class="form-control" id="exampleInputName">
+											<span
+											ng-show="products.processorChip.$invalid" style="color: red;">Vui lòng nhập
+											chíp xử lý CPU (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Tốc độ CPU</label>
+										 <input type="text" ng-model="form2.cpuSpeed" name="cpuSpeed"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.cpuSpeed.$invalid" style="color: red;">Vui lòng nhập
+											tốc độ CPU (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Chip đồ họa </label> 
+										<input type="text" ng-model="form2.graphicsChip" name="graphicsChip"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.graphicsChip.$invalid" style="color: red;">Vui lòng nhập
+											Chip đồ họa (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">RAM</label>
+										 <input type="text" ng-model="form2.ram" name="ram"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.ram.$invalid" style="color: red;">Vui lòng nhập
+											ram (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Dung lượng lưu trữ</label> 
+										<input type="text" ng-model="form2.storageCapacity" name="storageCapacity"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.storageCapacity.$invalid" style="color: red;" >Vui lòng nhập
+											dung lượng lưu trữ (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Dung lượng còn lại (khả dụng)</label> 
+										<input type="text" ng-model="form2.remainingCapacity" name="remainingCapacity"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.remainingCapacity.$invalid" style="color: red;">Vui lòng nhập
+											dung lượng còn lại (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Thẻ nhớ</label> 
+										<input type="text" ng-model="form2.memoryStick" name="memoryStick"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.memoryStick.$invalid" style="color: red;">Vui lòng nhập
+											thẻ nhớ (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Danh bạ</label> 
+										<input type="text" ng-model="form2.phonebook" name="phonebook"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.phonebook.$invalid" style="color: red;">Vui lòng nhập
+											danh bạ(ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Mạng di động</label> 
+										<input type="text" ng-model="form2.mobileNetwork" name="mobileNetwork"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.mobileNetwork.$invalid" style="color: red;">Vui lòng nhập
+											mạng di động (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">SIM
+											sản phẩm</label> <input type="text" ng-model="form2.sim" name="sim"
+											class="form-control" id="exampleInputName" minlength="2" maxlength="255">
+											<span
+											ng-show="products.sim.$invalid" style="color: red;">Vui lòng nhập
+											sim(ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">WIFI</label> 
+										<input type="text" ng-model="form2.wifi" name="wifi"
+											class="form-control" id="exampleInputName" minlength="2" maxlength="255">
+											<span
+											ng-show="products.wifi.$invalid" style="color: red;">Vui lòng nhập
+											wifi (ít nhất 2 ký tự) </span>
+									</div>
+									
+									<br>
+
+								</div>
+								<div class="col-sm-6">
+									<div class="row">
+
+										<div class="mb-3">
+											<label for="exampleInputName" class="form-label">Tên
+												sản phẩm</label> <input type="text" ng-model="form2.name" name="name"
+												class="form-control"id="name" onkeyup="ChangeToSlug();"  minlength="2" maxlength="255">
+												<span
+											ng-show="products.name.$invalid" style="color: red;">Vui lòng nhập
+											tên sản phẩm (ít nhất 2 ký tự) </span>
+										</div>
+										
+
+										<div class="mb-3">
+											<label for="exampleInputPrice" class="form-label">Giá</label>
+											<input type="number" ng-model="form2.price" name="price"
+												class="form-control" id="exampleInputPrice" min="1" >
+												<span
+											ng-show="products.price.$invalid" style="color: red;">Vui lòng nhập
+											giá sản phẩm </span>
+										</div>
+										<div class="mb-3">
+											<label for="exampleInputPrice" class="form-label">Giảm giá (%)</label>
+											<input type="number" ng-model="form2.discount" name="discount"
+												class="form-control" id="exampleInputPrice"  min="0" >
+												<span
+											ng-show="products.discount.$invalid"style="color: red;" >Vui lòng nhập
+											giảm giá bao nhiêu(%) </span>
+										</div>
+										<div class="mb-3">
+											<label for="exampleInputSL" class="form-label">Số
+												lượng sản phẩm</label> <input type="number" ng-model="form2.quantity" name="quantity"
+												class="form-control" id="exampleInputSL"  min="1">
+												<span
+											ng-show="products.quantity.$invalid" style="color: red;">Vui lòng nhập
+											số lượng sản phẩm (ít nhất 1 sản phẩm) </span>
+										</div>
+										<div class="mb-3">
+											<label for="exampleInputSL" class="form-label">Hãng
+												sản phẩm</label> <select class="form-control " id="loaitin "  name="id"
+												placeholder="Chọn loai sản phẩm"  
+												ng-model="form2.category.id"  >
+
+												<option ng-repeat=" p in items" ng-value="p.id"  name="id">
+													{{p.description}}</option>
+
+
+											</select> 
+											<span
+											ng-show="products.id.$pristine" style="color: red;">Vui lòng chọn hãng sản phẩm </span>
+
+										</div>
+										<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Công nghệ màn hình</label>
+										 <input type="text" ng-model="form2.screenTechnology" name="screenTechnology"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.screenTechnology.$invalid" style="color: red;">Vui lòng nhập
+											công nghệ màn hình (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Độ phân giải</label> 
+										<input type="text" ng-model="form2.resolution" name="resolution"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.resolution.$invalid" style="color: red;">Vui lòng nhập
+											độ phân giải (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Màn hình rộng</label> 
+										<input type="text" ng-model="form2.widescreen" name="widescreen"
+											class="form-control" id="exampleInputName "  minlength="2" maxlength="255">
+											<span
+											ng-show="products.widescreen.$invalid" style="color: red;">Vui lòng nhập
+											màn hình rộng(ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Độ sáng tối đa</label> 
+										<input type="text" ng-model="form2.maximumBrightness" name="maximumBrightness"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255"><span
+											ng-show="products.maximumBrightness.$invalid" style="color: red;">Vui lòng nhập
+											độ sáng tối đa (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Mặt kính cảm ứng</label> 
+										<input type="text" ng-model="form2.touchGlass" name="touchGlass"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.touchGlass.$invalid" style="color: red;">Vui lòng nhập
+											mặt kính cảm ứng (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Cổng kết nối/sạc</label> 
+										<input type="text" ng-model="form2.connectorChargingPort" name="connectorChargingPort"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.connectorChargingPort.$invalid" style="color: red;" >Vui lòng nhập
+											cổng kết nối/sạc (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Jack tai nghe</label> 
+										<input type="text" ng-model="form2.headphoneJack" name="headphoneJack"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.headphoneJack.$invalid" style="color: red;">Vui lòng nhập
+											Jack tai nghe (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Kết nối khác</label>
+										 <input type="text" ng-model="form2.otherConnections" name="otherConnections"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.otherConnections.$invalid" style="color: red;" >Vui lòng nhập
+											kết nối khác (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Dung lượng pin</label> 
+										<input type="text" ng-model="form2.batteryCapacity" name="batteryCapacity"
+											class="form-control" id="exampleInputName" minlength="2" maxlength="255">
+											<span
+											ng-show="products.batteryCapacity.$invalid" style="color: red;">Vui lòng nhập
+											dung lượng pin (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Bảo mật nâng cao</label>
+										 <input type="text" ng-model="form2.advancedSecurity" name="advancedSecurity"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+										<span
+											ng-show="products.advancedSecurity.$invalid" style="color: red;">Vui lòng nhập
+											bảo mật nâng cao (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Thiết kế</label> 
+										<input type="text" ng-model="form2.design" name="design"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.design.$invalid" style="color: red;">Vui lòng nhập
+											thiết kế (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Chất liệu</label>
+										 <input type="text" ng-model="form2.materialSubstance" name="materialSubstance"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.materialSubstance.$invalid" style="color: red;">Vui lòng nhập
+										chất liệu (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Thiết kế</label> 
+										<input type="text" ng-model="form2.design" name="design"
+											class="form-control" id="exampleInputName" minlength="2" maxlength="255">
+											<span
+											ng-show="products.design.$invalid" style="color: red;">Vui lòng nhập
+											thiết kế (ít nhất 2 ký tự) </span>
+									</div>
+								
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Kích thước, khối lượng</label> 
+										<input type="text" ng-model="form2.dimensionsWeight" name="dimensionsWeight"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.dimensionsWeight.$invalid" style="color: red;">Vui lòng nhập
+											kích thước,khối lượng (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Bảo hành</label> 
+										<input type="text" ng-model="form2.insurance" name="insurance"
+											class="form-control" id="exampleInputName"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.insurance.$invalid" style="color: red;">Vui lòng nhập
+											bảo hành (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="slug" class="form-label">slug</label> 
+											
+										<input type="text" ng-model="form2.slug"  name="slug"
+											class="form-control" id="slug"  minlength="1" maxlength="255">
+											<span
+											ng-show="products.slug.$invalid" style="color: red;">Vui lòng nhập thêm 
+											slug (ít nhất 1 ký tự) </span>
+										
+									</div>
+								
+								
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">GPS</label> 
+										<input type="text" ng-model="form2.gps"
+											class="form-control" id="exampleInputName" name="gps"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.gps.$invalid" style="color: red;">Vui lòng nhập
+											GPS(ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+										<label for="exampleInputName" class="form-label">Bluetooth</label> <input type="text" ng-model="form2.bluetooth"
+											class="form-control" id="exampleInputName" name="bluetooth"  minlength="2" maxlength="255">
+											<span
+											ng-show="products.bluetooth.$invalid" style="color: red;">Vui lòng nhập
+											bluetooth (ít nhất 2 ký tự) </span>
+									</div>
+									<div class="mb-3">
+											<label for="exampleInputName" class="form-label">Mô
+												tả</label>
+											<textarea ng-model="form2.description" class="form-control" name="description"
+												rows="5"  minlength="10" maxlength="1000"> </textarea>
+												<span
+											ng-show="products.description.$invalid" style="color: red;">Vui lòng nhập
+											mô tả (ít nhất 10 ký tự) </span>
+										</div>
+									
+									</div>
+									
+									
+									<button ng-click="create2()" type="submit"
+										class="btn btn-primary" id="create2" disabled>
+										<i class="bi bi-download"></i> LƯU
+									</button>
+									<button ng-click="update2()" type="submit"
+										class="btn btn-warning" id="update2" disabled>
+										<i class="bi bi-box-arrow-in-up-right"></i> CẬP NHẬT
+									</button>
+
+									<button ng-click="reset2()" class="btn btn-info">
+										<i class="bi bi-arrow-clockwise"></i> Reset
+									</button>
+								</div>
+							</div>
+						</form>
+
+					</div>
+				</div>
+
+				<div class="tab-pane fade" id="profile" role="tabpanel"
+					aria-labelledby="profile-tab ">
+ <br>
+ <br>
+ 
+  <div class="form-outline mb-4" style="margin-left: 700px;">
+   <div class="input-group">
+     
+      <input type="text" class="form-control" name="keywords" placeholder="Nhập thông tin bạn muốn tìm  ?" aria-label="Username" aria-describedby="basic-addon1"ng-model="searchName" style="width: 200px;">
+       <div class="input-group-prepend " >
+        <span class="input-group-text bg-warning" id="basic-addon1" style="width: 50px;"> <i class="fa fa-search"></i></span>
+      </div>
+    </div>
+ </div>
+					<table class="table">
+						<thead class="bg-dark text-white">
+							<tr>
+								<th scope="col">Mã sản phẩm</th>
+								<th scope="col">Tên</th>
+
+
+								<th scope="col">Giá</th>
+								<th scope="col">SL</th>
+								<th scope="col">Hãng</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="p in pagers2.itemsss|filter:searchName">
+								<th scope="row">{{p.id}}</th>
+								<td>{{p.name}}</td>
+								<td>{{p.price|number :0}}</td>
+								<td>{{p.quantity}}</td>
+								<td>{{p.category.description}}</td>
+								<td><button ng-click="edit2(p)" class="btn btn-warning "
+										style="width: 70px;">
+										<i class="bi bi-pencil-square"></i>
+									</button></td>
+							</tr>
+
+						</tbody>
+					</table>
+					<div class=" text-center">
+						<button ng-click="pagers2.first()" class="btn btn-primary"
+							style="width: 42px;">
+							<i class="bi bi-chevron-double-left"></i>
+						</button>
+						<button ng-click="pagers2.previous()" class="btn btn-primary"
+							style="width: 42px;">
+							<i class="bi bi-chevron-left"></i>
+						</button>
+						<button ng-click="pagers2.next()" class="btn btn-primary"
+							style="width: 42px;">
+							<i class="bi bi-chevron-right"></i>
+						</button>
+						<button ng-click="pagers2.last()" class="btn btn-primary"
+							style="width: 42px;">
+							<i class="bi bi-chevron-double-right"></i>
+						</button>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+</div>
+	</main>
+</body>
+
+</html>

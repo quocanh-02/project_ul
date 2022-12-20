@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/user/img/One.png" />
+<title>OneShop - bán điện thoại</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<script src="https://code.angularjs.org/1.8.0/angular-route.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+<!-- Google Font -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
+	rel="stylesheet">
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="/user/css/bootstrap.min.css"
+	type="text/css">
+<link rel="stylesheet" href="/user/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet" href="/user/css/elegant-icons.css"
+	type="text/css">
+<link rel="stylesheet" href="/user/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="/user/css/jquery-ui.min.css"
+	type="text/css">
+<link rel="stylesheet" href="/user/css/owl.carousel.min.css"
+	type="text/css">
+<link rel="stylesheet" href="/user/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="/user/css/style.css" type="text/css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/user/css/bootstrap.min.css">
+
+
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
+	type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
+	rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+	<header class="header">
+		<div th:replace="/layout/_header.html"></div>
+		<div class="row">
+
+			<div th:replace="/layout/_menu.html"></div>
+		</div>
+
+	</header>
+
+
+	<div class="row">
+
+		<article class="col-lg-2" style="margin-left: 30px;">
+			<div th:replace="/layout/_category.html"></div>
+
+
+
+		</article>
+
+		<aside class="col-lg-9">
+			<div th:replace="${main}"></div>
+		</aside>
+		<div class="widget-btn-list " style="margin-left: 30px;">
+			<div
+				class="widget-btn widget-btn-facebook animate__animated animate__heartBeat animate__infinite animate__slower	infinite">
+				<a href="https://www.facebook.com/oneshop.store.vn" target="_blank"
+					title="TrĂ² chuyá»‡n thĂ´ng qua Facebook Messenger"> <img
+					alt="btn-facebook"
+					src="https://cdn.jsdelivr.net/gh/doannguyennet/images/fbmessenger.svg" />
+				</a>
+			</div>
+
+			<div
+				class="widget-btn widget-btn-callow  animate__animated animate__heartBeat animate__infinite animate__slower	infinite">
+				<a href="tel:0357628935" title="Gá»�i ngay"> <img
+					alt="btn-callnow"
+					src="https://cdn.jsdelivr.net/gh/doannguyennet/images/call.svg" /></a>
+			</div>
+		</div>
+	</div>
+
+
+	<footer class="footer spad">
+		<div th:replace="/layout/_footer.html"></div>
+	</footer>
+	<script src="/user/js/shopping-cart-app.js"></script>
+
+	<script>
+		$('#datepicker').datepicker({
+			uiLibrary : 'bootstrap4'
+		});
+
+		function addToCart(productId) {
+			var endpoint = '/api/cart/update?productId=' + productId
+					+ '&quantity=1&isReplace=false';
+			$.ajax({
+				url : endpoint,
+				type : 'GET',
+				dataType : 'json',
+				success : function(data) {
+					$('#headerTotalQuantity').text(data.totalQuantily)
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			})
+		}
+		function removeProduct(productId) {
+			var url = '/oneshop/cart/update?productId=' + productId
+					+ '&quantity=0&isReplace=true';
+			$.get(url).done(function(data) {
+				$('#align-middle').replaceWith(data);
+				callApiRefreshCart();
+			})
+		}
+
+	
+		function callApiRefreshCart() {
+			var url = '/api/cart/refresh';
+			$.ajax({
+				url : url,
+				type : 'GET',
+				dataType : 'json',
+				success : function(data) {
+					$('#headerTotalQuantity').text(data.totalQuantily)
+					$('#headerTotalPrice')
+							.text(formatCurrency(data.totalPrice))
+							$('#headerTotalPrice1')
+							.text(formatCurrency(data.totalPrice + 20000))
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			})
+		}
+		function formatCurrency(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' đ'
+		}
+		function updateQuantity(productId) {
+			var idInput = '#quantity' + productId;
+			var newQuantity = $(idInput).val();
+			var url = '/oneshop/cart/update?productId=' + productId
+					+ '&quantity=' + newQuantity + '&isReplace=true';
+			$.get(url).done(function(data) {
+				$('#align-middle').replaceWith(data);
+				callApiRefreshCart();
+			});
+		}
+		
+		
+			
+
+		function checkout() {
+			var address = $('#address').val();
+			var phone = $('#phone').val();
+			var url = '/api/cart/checkout?address=' + address + '&phone=' + phone;
+			$.ajax({
+				url : url,
+				type : 'GET',
+				dataType : 'json',
+				statusCode : {
+					200 : handle200,
+					400 : handle400,
+					401 : handle401
+				
+				}
+			})
+		}
+		
+		function checkoutpay() {
+			var url = '/oneshop/vnpay_payment';
+			$.ajax({
+				url : url,
+				type : 'POST',
+				dataType : 'json',
+				statusCode : {
+					200 : handle200,
+					400 : handle400,
+					401 : handle401
+				
+				}
+			})
+		}
+	
+		function handle200() {
+			alert("Thanh toán thành công")
+			window.location.href='/oneshop/home';
+		}
+		function handle400() {
+			alert("Thanh toán thất bại")
+		}
+		function handle401() {
+			alert("Vui lòng đăng nhập")
+			window.location.href='/oneshop/login';
+			
+		}
+		
+		
+	</script>
+	<script>
+		$(document).ready(function() {
+			$('.user-support').click(function(event) {
+				$('.social-button-content').slideToggle();
+			});
+		});
+	</script>
+	<script>
+		//<![CDATA[
+		$('input.input-qty')
+				.each(
+						function() {
+							var $this = $(this), qty = $this.parent().find(
+									'.is-form'), min = Number($this.attr('min')), max = Number($this
+									.attr('max'))
+							if (min == 0) {
+								var d = 0
+							} else
+								d = min
+							$(qty).on('click', function() {
+								if ($(this).hasClass('minus')) {
+									if (d > min)
+										d += -1
+								} else if ($(this).hasClass('plus')) {
+									var x = Number($this.val()) + 1
+									if (x <= max)
+										d += 1
+								}
+								$this.attr('value', d).val(d)
+							})
+						})
+	</script>
+	<script type="text/javascript">
+		function checkPasswordMatch(fieldConfirmPassword) {
+			if (fieldConfirmPassword.value != $("#password").val()) {
+				fieldConfirmPassword
+						.setCustomValidity("Passwords do not match!");
+			} else {
+				fieldConfirmPassword.setCustomValidity("");
+			}
+		}
+	</script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js "
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 "
+		crossorigin="anonymous "></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js "
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM "
+		crossorigin="anonymous "></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+		integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script type="text/javascript">
+		function checkPasswordMatch(fieldConfirmPassword) {
+			if (fieldConfirmPassword.value != $("#password").val()) {
+				fieldConfirmPassword
+						.setCustomValidity("Passwords do not match!");
+			} else {
+				fieldConfirmPassword.setCustomValidity("");
+			}
+		}
+	</script>
+	<script>
+	
+		let dates=document.querySelectorAll(".my-date > i")
+		for(let i=0;i<dates.length;i++){
+			let d=dates[i];
+			a.innerText =moment(d.innerText).fromNow()
+			}
+		
+	
+	</script>
+	<script>
+	function addComment() {
+		fetch("http://localhost:8080/api/add-comment")
+	}
+	</script>
+
+	<script>
+	// 1. what is API
+	// 2. How do I call API
+	// 3. Explain code
+	const host = "https://provinces.open-api.vn/api/";
+	var callAPI = (api) => {
+	    return axios.get(api)
+	        .then((response) => {
+	            renderData(response.data, "province");
+	        });
+	}
+	callAPI('https://provinces.open-api.vn/api/?depth=1');
+	var callApiDistrict = (api) => {
+	    return axios.get(api)
+	        .then((response) => {
+	            renderData(response.data.districts, "district");
+	        });
+	}
+	var callApiWard = (api) => {
+	    return axios.get(api)
+	        .then((response) => {
+	            renderData(response.data.wards, "ward");
+	        });
+	}
+
+
+	var renderData = (array, select) => {
+	    let row = ' <option disable value="">Vui lòng chọn </option>';
+	    array.forEach(element => {
+	        row += `<option value="${element.code}">${element.name}</option>`
+	    });
+	    document.querySelector("#" + select).innerHTML = row
+	}
+
+	$("#province").change(() => {
+	    callApiDistrict(host + "p/" + $("#province").val() + "?depth=2");
+	    printResult();
+	});
+	$("#district").change(() => {
+	    callApiWard(host + "d/" + $("#district").val() + "?depth=2");
+	    printResult();
+	});
+	$("#ward").change(() => {
+	    printResult();
+	})
+	$("#dress").change(() => {
+	    printResult();
+	})
+	var printResult = () => {
+	    if ($("#district").val() != "" && $("#province").val() != "" &&
+	        $("#ward").val() != "" && $("#dress").val() != "")
+	         {
+	        let result = $("#dress").val() +
+	            ", " +   $("#ward option:selected").text()  + ", " +
+	            $("#district option:selected").text() + ", " +$("#province option:selected").text()
+	                       
+	        $("#address").text(result)
+	    }
+
+	}
+
+	</script>
+
+</body>
+
+</html>

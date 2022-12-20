@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout_admin/index :: dynamic(~{::main})}">
+<body ng-controller="my-crtl">
+	<main>
+		<h5 class="mb-4 text-center text-primary">
+			<i class="bi bi-card-list"></i> HÃNG SẢN PHẨM
+		</h5>
+		<div class="col-sm-8 " style="margin-left: 250px;">
+
+			<div class="card">
+
+
+						<div class="bg-light h-100 p-4">
+
+
+							<form name="category">
+								<div class="row">
+
+
+									<div class="row">
+
+
+
+
+
+										<div class="mb-3 mt-5  ">
+
+											<label for="exampleInputHT" class="form-label">Tên
+												danh mục</label> <input type="text" class="form-control " id="name"
+												name="description"  minlength="3" maxlength="255"
+												ng-model="form.description"> <br> <span
+												ng-show="category.description.$invalid" style="color: red;">Vui
+												lòng nhập tên danh mục (ít nhất 3 ký tự) </span>
+
+
+
+
+										</div>
+
+
+										<div class="mb-3 mt-2">
+											<button ng-click="create()" type="submit"
+												class="btn btn-primary" id="create" disabled>
+												<i class="bi bi-download"></i> LƯU
+											</button>
+
+											<button ng-click="update()" type="submit"
+												class="btn btn-warning" id="update" disabled
+												style="margin-left: 50px;">
+												<i class="bi bi-box-arrow-in-up-right"></i> CẬP NHẬT
+											</button>
+
+
+											<button ng-click="reset()" class="btn btn-info"
+												style="margin-left: 50px;">
+												<i class="bi bi-arrow-clockwise"></i> Reset
+											</button>
+										</div>
+
+
+
+									</div>
+								</div>
+
+
+							</form>
+
+
+						</div>
+					</div>
+
+				</div>
+		
+		<br>
+		<br>
+		<br>
+	<div class="col-sm-8 " style="margin-left: 250px;">
+
+			<div class="card">
+			<br>
+			           <h5 style="margin-left: 20px;">Danh sách hãng sản phẩm</h5>
+			<div class="form-outline mb-4" style="margin-left: 500px;">
+				<div class="input-group">
+
+					<input type="text" class="form-control" name="keywords"
+						placeholder="Nhập thông tin bạn muốn tìm  ?" aria-label="Username"
+						aria-describedby="basic-addon1" ng-model="searchName"
+						style="width: 200px;">
+					<div class="input-group-prepend ">
+						<span class="input-group-text bg-warning" id="basic-addon1"
+							style="width: 50px;"> <i class="fa fa-search"></i></span>
+					</div>
+				</div>
+			</div>
+			<table class="table ">
+				<thead class="bg-dark text-white">
+					<tr>
+						<th>Mã hãng sản phẩm</th>
+						<th>Tên hãng sản phẩm</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="p in pager.items|filter:searchName">
+						<td>{{p.id}}</td>
+						<td>{{p.description}}</td>
+						<td>
+							<button ng-click="edit(p)" class="btn btn-warning w-50">
+								<i class="bi bi-pencil-square"></i>
+							</button>
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+			<div class=" text-center">
+				<button ng-click="pager.first()" class="btn btn-primary"
+					style="width: 42px;">
+					<i class="bi bi-chevron-double-left"></i>
+				</button>
+				<button ng-click="pager.previous()" class="btn btn-primary"
+					style="width: 42px;">
+					<i class="bi bi-chevron-left"></i>
+				</button>
+				<button ng-click="pager.next()" class="btn btn-primary"
+					style="width: 42px;">
+					<i class="bi bi-chevron-right"></i>
+				</button>
+				<button ng-click="pager.last()" class="btn btn-primary"
+					style="width: 42px;">
+					<i class="bi bi-chevron-double-right"></i>
+				</button>
+			</div>
+			</div>
+			</div>
+	</main>
+
+</body>
+
+</html>

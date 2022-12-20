@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div class="container">
+			<div class="get-in-touch">
+
+				<h5 class="title">THÔNG TIN TÀI KHOẢN BẠN</h5>
+				<div class="bg-light p-20 mb-7">
+					<form method="POST"  th:action="@{/oneshop/user}"
+							th:object="${userRequest}" >
+						<div class="row">
+
+							<div class="col-md-12 form-group">
+								<label class="label" for="name">Tên đăng nhập</label> <input
+									class="form-control" type="text" th:field="${user.username}"disabled required>
+							</div>
+							<br> <br>
+							<div class="col-md-12 form-group">
+								<label class="label" for="company">Họ tên</label> <input
+									class="form-control" type="text" th:field="${user.fullname}"  required>
+							</div>
+						
+							<div class="col-md-12 form-group">
+								<label>Email</label> <input class="form-control" th:field="${user.email}" type="text">
+							</div>
+							<div class="col-md-6 form-group">
+
+
+								<button class="btn btn-info text-uppercase"
+									style="width: 300px; height: 50px; margin-left: 250px;">CẬP
+									NHẬT</button>
+							</div>
+
+						</div>
+					</form>
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+<div class="hero__categories" xmlns:th="http://www.thymeleaf.org" >
+
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action" aria-current="true" style="background-color: #f59504; color: aliceblue;"> <i class="fa fa-clipboard-list" aria-hidden="true"></i> HÃNG SẢN PHẨM
+        </a>
+        <a th:each="c:${cates}"th:href="@{|/oneshop/index?sort=${c.description}|}" class="list-group-item list-group-item-action">[[${c.description}]]</a>
+
+
+    </div>
+</div>
+  <br> <br> <br>

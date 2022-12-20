@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="UTF-8">
+
+</head>
+
+<body>
+	<main>
+<div class="col-lg-12">
+                    <div class="section-title">
+                   
+                        <h2 class="text-info">ĐƠN HÀNG CỦA TÔI</h2>
+                    </div>
+
+                </div>
+
+			<div class="card card-body " >
+
+
+			<div class="nav nav-tabs mb-4">
+			
+				<a class="nav-item nav-link text-dark active" data-toggle="tab"
+					href="#tab-pane-1">Chờ xác nhận</a> <a
+					class="nav-item nav-link text-dark" data-toggle="tab"
+					href="#tab-pane-2">Đang giao</a> <a
+					class="nav-item nav-link text-dark" data-toggle="tab"
+					href="#tab-pane-3">Đã mua</a> <a
+					class="nav-item nav-link text-dark" data-toggle="tab"
+					href="#tab-pane-4">Đã hủy</a>
+			</div>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="tab-pane-1"  >
+					<h5 class="text-center" th:if="${orders0.totalElements==0}"
+						style="font-size: 18px;">Bạn chưa có đơn hàng nào </h5>
+				<div class="col-12 mt-5" th:each="item, count : ${orders0}">
+					<h5 style="text-decoration-line: underline;" class="text-primary">Mã hóa đơn [[${item.id}]]</h5>
+				
+					<table class="table table-bordered"
+						th:unless="${orders0.totalElements==0}">
+						<thead>
+							<tr class="text-center">
+								<th>STT</th>
+						
+								<th>Ngày mua</th>
+								<th>Chi tiết</th>
+								<th>Hành động</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="text-center" >
+								<th th:text="${count.index + 1}"></th>
+								
+
+							<th th:text="${#dates.format(item.createdDate,'dd/MM/yyyy')}"></th>
+
+							<th>
+									<a th:href="@{'/oneshop/checkorder/detail_order/'+${item.id}}" class="btn btn-primary"> Chi tiết 
+											</a>
+											</th>
+
+								<th><a style="cursor: pointer;" th:href="@{'/oneshop/checkorder/cancel/'+${item.id}}" class="btn btn-danger"
+								>Huỷ đơn</a></th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</div>
+				<div class="tab-pane fade" id="tab-pane-2">
+				<h5 class="text-center" th:if="${orders1.totalElements==0}"
+						style="font-size: 18px;">Bạn chưa có đơn hàng nào </h5>
+						<div class="col-12 mt-5" th:each="item, count : ${orders1}">
+					<h5 style="text-decoration-line: underline;" class="text-primary">Mã đơn hàng [[${item.id}]]</h5>
+					
+					<table class="table table-bordered"
+						th:unless="${orders1.totalElements==0}">
+						<thead>
+							<tr class="text-center">
+								<th>STT</th>
+							
+								<th>Ngày mua</th>
+								<th>Chi tiết</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="text-center" th:each="item, count : ${orders1}">
+								<th th:text="${count.index + 1}"></th>
+								
+								<th th:text="${#dates.format(item.createdDate,'dd/MM/yyyy')}"></th>
+
+								
+								<th>
+								<a th:href="@{'/oneshop/checkorder/detail_order/'+${item.id}}"> Chi tiết <i
+													class="bi bi-eye-fill" aria-hidden="true"></i>
+											</a>
+								</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</div>
+			
+			<div class="tab-pane fade" id="tab-pane-3" >
+				
+				<h5 class="text-center" th:if="${orders2.totalElements==0}"
+							style="font-size: 18px;">Bạn chưa có đơn hàng nào</h5>
+					<div class="col-12 mt-5 mb-2" th:each="item, count : ${orders2}">
+						<h5 class="text-primary" >
+						Mã đơn hàng  [[${item.id}]]
+			
+						
+						
+							</h5>
+						
+						<table class="table table-bordered"
+							th:unless="${orders2.totalElements==0}">
+							<thead>
+								<tr class="text-center">
+									<th>STT</th>
+								
+
+									<th>Ngày mua</th>
+									<th>Chi tiết</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center"
+									th:if="${item.status!=0}">
+									<th th:text="${count.index + 1}"></th>
+									
+									<th th:text="${#dates.format(item.createdDate,'dd/MM/yyyy')}"></th>
+<th>
+									<a th:href="@{'/oneshop/checkorder/detail_order/'+${item.id}}"> Chi tiết <i
+													class="bi bi-eye-fill" aria-hidden="true"></i>
+											</a>
+											</th>
+								</tr>
+							</tbody>
+						</table>
+					
+
+				</div>
+			</div>
+			<div class="tab-pane fade" id="tab-pane-4" >
+			<h5 class="text-center" th:if="${orders3.totalElements==0}"
+						style="font-size: 18px;">Bạn chưa có đơn hàng nào</h5>
+				<div class="col-12 mt-5 mb-5" th:each="item, count : ${orders3}">
+					<h5 style="text-decoration-line: underline;" class="text-primary">Mã đơn hàng  [[${item.id}]]</h5>
+					
+					<table class="table table-bordered"
+						th:unless="${orders3.totalElements==0}">
+						<thead>
+							<tr class="text-center">
+								<th>STT</th>
+							
+								<th>Ngày mua</th>
+								<th>Chi tiết</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="text-center" 
+								th:if="${item.status!=0}">
+								<th th:text="${count.index + 1}"></th>
+									<th th:text="${#dates.format(item.createdDate,'dd/MM/yyyy')}"></th>
+							<th>
+									<a th:href="@{'/oneshop/checkorder/detail_order/'+${item.id}}"> Chi tiết <i
+													class="bi bi-eye-fill" aria-hidden="true"></i>
+											</a>
+											</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+		</div>
+		</div>
+		
+</div>
+
+	</main>
+</body>
+
+
+
+</html>
+

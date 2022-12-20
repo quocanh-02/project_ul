@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout_admin/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div class="col-sm-10" style="margin-left: 150px;">
+			<h5 class="text-center text-primary">
+				<i class="bi bi-person-circle"></i> THÔNG TIN TÀI KHOẢN
+			</h5>
+			<br>
+			<div class="card">
+		
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="home" role="tabpanel"
+					aria-labelledby="home-tab">
+
+					<div class="bg-light h-100 p-4">
+
+
+				
+						<form name="account">
+							<div class="row">
+								<div class="col-sm-6 text-center mt-5">
+
+
+									<div class="border p-3">
+										<label for="image"> <img
+											ng-src="/static/avatar/{{form1.imgUrl}}" style="width: 300px"
+											height="300px" />
+										</label> <input type="file" class="form-control" id="image"
+											onchange="angular.element(this).scope().imageChanged(this.files)">
+
+									</div>
+
+
+								</div>
+
+								<div class="col-sm-6">
+									<div class="row">
+
+										<div class="mb-3">
+											<label for="exampleInputName" class="form-label">Tên
+												tài khoản</label> <input ng-model="form1.username" name="username"
+												type="text" class="form-control" id="exampleInputName"
+												 minlength="5" maxlength="20"> <span
+												ng-show="account.username.$invalid" style="color: red;">Vui lòng nhập tên
+												tài khoản(ít nhất 5 ký tự) </span>
+										</div>
+										<div class="mb-3">
+											<label for="exampleInputName" class="form-label">Mật
+												khẩu</label> <input ng-model="form1.password" name="password"
+												type="password" class="form-control" id="exampleInputName"
+											 minlength="6" maxlength="255"> <span
+												ng-show="account.password.$invalid" style="color: red;">Vui lòng nhập mật
+												khẩu đúng 6 ký tự </span>
+										</div>
+										<div class="mb-3">
+											<label>Roles</label>
+											<div class="form-control">
+												<div class="form-check ps-0">
+													<label ng-repeat="r in roles" class="form-check-label me-2"
+														for="inlineFormCheck" name="id"> <input ng-value="r"
+														class="form-check-input1" type="checkbox"
+														id="inlineFormCheck" ng-checked="selection.indexOf(r)>-1"
+														ng-click="toggleRole(r)" name="id"> {{r.name}}
+													</label>
+													
+												</div>
+												
+											</div>
+											
+										</div>
+										
+
+
+
+										<div class="mb-3">
+											<label for="exampleInputHT" class="form-label">Họ và
+												tên</label> <input type="text" name="fullname" class="form-control"
+												id="exampleInputHT" ng-model="form1.fullname"
+												minlength="5" maxlength="255"> <span
+												ng-show="account.fullname.$invalid" style="color: red;">Vui lòng nhập
+												họ và tên (ít nhất 5 ký tự) </span>
+										</div>
+									<div class="mb-3">
+											<label for="exampleInputE" class="form-label">Email</label>
+											 <input type="email" name="email" class="form-control"
+												id="exampleInputE" ng-model="form1.email" > <span
+												ng-show="account.email.$invalid" style="color: red;">Email không hợp lệ </span>
+										</div>
+
+										<br>
+
+
+
+									</div>
+									<button ng-click="create1()" type="submit"
+										class="btn btn-primary" style="width: 140px;" id="create1" disabled>
+										<i class="bi bi-download"></i> LƯU
+									</button>
+
+									<button ng-click="update1()" type="submit"
+										class="btn btn-warning" id="update1"  disabled>
+										<i class="bi bi-box-arrow-in-up-right"></i> CẬP NHẬT
+									</button>
+
+
+									<button ng-click="reset1()" class="btn btn-info ">
+										<i class="bi bi-arrow-clockwise"></i> Reset
+									</button>
+								</div>
+
+							</div>
+						</form>
+
+					</div>
+				</div>
+
+
+			
+
+</div>
+</div>
+<br>
+	<div class="card card-body " >
+	<h5>Danh sách tài khoản</h5>
+ <div class="form-outline mb-4" style="margin-left: 600px;">
+   <div class="input-group">
+     
+      <input type="text" class="form-control" name="keywords" placeholder="Nhập thông tin bạn muốn tìm  ?" aria-label="Username" aria-describedby="basic-addon1"ng-model="searchName" style="width: 200px;">
+       <div class="input-group-prepend " >
+        <span class="input-group-text bg-warning" id="basic-addon1" style="width: 50px;"> <i class="fa fa-search"></i></span>
+      </div>
+    </div>
+ </div>
+					<table class="table">
+						<thead class="bg-dark text-white">
+							<tr>
+								<th scope="col ">Tên tài khoản</th>
+								<th scope="col ">Họ và tên</th>
+								<th scope="col ">Email</th>
+								<th scope="col "></th>
+
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="p in pagers.itemss|filter:searchName">
+								<th scope="row ">{{p.username}}</th>
+								<td>{{p.fullname}}</td>
+								<td>{{p.email}}</td>
+								<td><button ng-click="edit1(p)"
+										class="btn btn-warning w-50">
+										<i class="bi bi-pencil-square"></i>
+									</button></td>
+
+							</tr>
+
+						</tbody>
+					</table>
+					<div class=" text-center">
+						<button ng-click="pagers.first()" class="btn btn-primary"
+							style="width: 42px;">
+							<i class="bi bi-chevron-double-left"></i>
+						</button>
+						<button ng-click="pagers.previous()" class="btn btn-primary"
+							style="width: 42px;">
+							<i class="bi bi-chevron-left"></i>
+						</button>
+						<button ng-click="pagers.next()" class="btn btn-primary"
+							style="width: 42px;">
+							<i class="bi bi-chevron-right"></i>
+						</button>
+						<button ng-click="pagers.last()" class="btn btn-primary"
+							style="width: 42px;">
+							<i class="bi bi-chevron-double-right"></i>
+						</button>
+						<br>
+						<br>
+						<br>
+					</div>
+				</div>
+				</div>
+	
+	</main>
+</body>
+
+</html>

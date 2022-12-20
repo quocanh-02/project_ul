@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div class="row px-xl-5">
+			<div class="col-lg-8 ">
+				<div class="card " id="align-middle">
+					<h5 class="card-header text-primary" style="text-align: center;">
+						<i class="fas fa-shopping-cart text-primary"></i> GIỎ HÀNG
+					</h5>
+					<div class="card-body"
+						th:each="detail, i: ${session.currentCart.detail}">
+						<div class="row ">
+							<div class="col-lg-8 " style="width: 600px;">
+								<img th:src="@{|/static/avatar/${detail.value.imgUrl}|}"
+									class="card-img-top" alt="Card image cap" style="width: 100px;">
+								<b th:text="${detail.value.name}"></b>
+
+								<p style="margin-left: 100px" class="align-middle"
+									th:text="${#numbers.formatCurrency(detail.value.price -((detail.value.price) *(detail.value.discount)/100))}"></p>
+
+								<b class="align-middle" style="margin-left: 100px"> Số lượng
+									<input type="number" style="width: 50px; margin-left: 10px"
+									th:value="${detail.value.quantity}"
+									th:id="quantity + ${detail.key}"
+									th:attr="onchange='updateQuantity(\''+${detail.key}+'\')'"
+									value="0" max="5">
+								</b>
+								<button class="btn btn-sm btn-danger"
+									th:attr="onclick='removeProduct(\''+${detail.key}+'\')'">
+									<i class="fa fa-times"></i>
+								</button>
+							</div>
+							<div class="col-lg-4">
+								<b class="align-middle text-danger"
+									th:text="${#numbers.formatCurrency(detail.value.price *detail.value.quantity)}"></b>
+
+							</div>
+
+						</div>
+						<hr>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="card ">
+					<h5 class="card-header text-primary" style="text-align: center;">Thành
+						tiền</h5>
+					<div class="card-body">
+
+						<b>Tổng : <span id="headerTotalPrice"
+							th:text="${#numbers.formatCurrency(session.currentCart.totalPrice)}"></span></b>
+						<hr>
+						<b>Phí vận chuyển : <span id="headerTotalPrice">20.000đ</span></b>
+						<hr>
+						<b>Thành tiền : <span id="headerTotalPrice1"
+							th:text="${#numbers.formatCurrency(session.currentCart.totalPrice+20000)}"></span></b>
+						<br> <br> <a th:href="@{/oneshop/pay}"
+							class="primary-btn">TIẾN HÀNH ĐẶT HÀNG</a>
+							<br> <br> 
+					</div>
+				</div>
+			</div>
+		</div>
+		<br> <br>
+	</main>
+</body>
+</html>

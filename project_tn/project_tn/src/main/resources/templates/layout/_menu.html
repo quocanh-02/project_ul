@@ -1,0 +1,46 @@
+
+
+	<div class="col-lg-2">
+		<div class="header__logo">
+			<a href="./index.html"><img src="/user/img/One.png" alt=""></a>
+		</div>
+	</div>
+	<div class="col-lg-8">
+		<nav class="header__menu">
+			<ul>
+				<li class="active"><a th:href="@{/oneshop/home}"><i
+						class="fa fa-home"></i> Trang chủ</a></li>
+				<li><a th:href="@{/oneshop/index}"><i class="fa fa-caret-down"></i>
+						Sản phẩm</a></li>
+				<li><a href="#"><i class="fa fa-bookmark"></i> Các trang khác</a>
+					<ul class="header__menu__dropdown">
+						<li><a th:href="@{/oneshop/discount}"> <i class="fa fa-gift"></i>
+								Khuyến mại
+						</a></li>
+
+
+						<li><a th:href="@{/oneshop/cart}"><i
+								class="fa fa-shopping-bag"></i> Giỏ hàng</a></li>
+						<li><a th:href="@{/oneshop/change_password}"><i
+								class="fa fa-shopping-bag"></i> Đổi mật khẩu</a></li>
+
+						<li th:if="${session.currentUser != null}"><a th:href="@{/oneshop/logout}"><i
+								class="fa fa-arrow-circle-left"></i> Đăng xuất</a></li>
+					</ul></li>
+				<li><a th:if="${session.currentUser != null}" th:href="@{/oneshop/checkorder/orderinfo}" ><i class="fa fa-box"></i>
+						Kiểm tra đơn hàng</a></li>
+
+			
+			</ul>
+		</nav>
+	</div>
+	<div class="col-lg-2">
+		<div class="header__cart">
+			<ul>
+			
+				<li><a th:href="@{/oneshop/cart}"><i
+						class="fa fa-shopping-bag"></i> <span id="headerTotalQuantity" th:text="${session.currentCart.totalQuantily}"></span> </a></li>
+			</ul>
+
+		</div>
+	</div>

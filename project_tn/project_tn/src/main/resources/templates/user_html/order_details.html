@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="UTF-8">
+
+</head>
+
+<body>
+	<main>
+		
+		<h3 class="text-info text-center">CHI TIẾT ĐƠN HÀNG</h3>
+<a style="margin-left: 850px;color: black;"  class="btn btn-outline-warning" th:href="@{|/oneshop/checkorder/orderinfo|}">QUAY LẠI  ĐƠN HÀNG CỦA BẠN</a>
+<br>
+<br>
+		<div class="card card-body ">
+
+
+
+
+			<div class="col-12 mt-5">
+
+
+				<table class="table table-bordered">
+					<thead>
+						<tr class="text-center">
+							<th>STT</th>
+							<th></th>
+							<th>Tên sản phẩm</th>
+							<th>Số lượng</th>
+							<th>Giá</th>
+							<th>Thành tiền</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="text-center" th:each="item, count : ${orderdetail}">
+							<th th:text="${count.index + 1}"></th>
+	<td><img
+								th:src="@{|/static/avatar/${item.product.imgUrl}|}"
+								class="card-img-top" alt="Card image cap" style="width: 100px;height: 100px;"></td>
+							<th th:text="${item.product.name}"></th>
+<th th:text="${item.quantity}"></th>
+<th th:text="${#numbers.formatCurrency(item.price)}"></th>
+<th th:text="${#numbers.formatCurrency(item.price * item.quantity)}"></th>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</main>
+</body>
+
+
+
+</html>
+
